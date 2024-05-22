@@ -11,5 +11,5 @@ Index
 
 ---
 
-01 - [[Linux Fundamentals]]
-02 - [[File Management]]
+01. [[Linux Fundamentals]]
+02. [[File Management]]
