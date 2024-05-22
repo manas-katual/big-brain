@@ -1,6 +1,5 @@
 ---
-title: Welcome to Quartz
+title: Welcome to Big brain
 ---
-
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+My personal notes
+see the [[Dashboard]] for more
