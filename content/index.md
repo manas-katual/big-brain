@@ -2,4 +2,4 @@
 title: Welcome to Big brain
 ---
 My personal notes
-see the [[dashboard]] for more
+see the [[Dashboard]] for more

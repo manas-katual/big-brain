@@ -3,7 +3,7 @@ title: RHCSA
 draft: false
 tags:
 ---
- Uplink : [[dashboard]]
+ Uplink : [[Dashboard]]
 
 # RHCSA
 
@@ -11,5 +11,5 @@ Index
 
 ---
 
-01. [[Linux Fundamentals]]
-02. [[File Management]]
+1. [[Linux Fundamentals]]
+2. [[File Management]]

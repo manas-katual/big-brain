@@ -33,7 +33,7 @@ Uplink : [[RHCSA]]
 	- SBIN (superbinary) - binaries stored in /usr/sbin, can only be used by root
 	- /usr doesn't contain files directly it contains sub directories 
 	- User will give the command through shell to the user space and then it will search the commands in /usr/bin or /usr/sbin and it will pass the message to kernel space. Execution will happen at the kernel space and it will then show the output/error to the user space
-	- ![[File Management  1.excalidraw.png]]
+	- ![[Operating_System_v3.svg]]
 1. **/var** &rarr;
     - It contains all the logs and messages related to system, hardware and applications.
     - Its structure is like
@@ -100,7 +100,7 @@ A user will always login into his home directory
 
 - Complete path from current location to reach a destination file or directory is called absolute path
 
-![[Absolute Path.excalidraw.png]]
+![[Absolute_Path.svg]]
 
 `. dot`  &rarr; it represents current directory
 `.. double dot` &rarr; it represents previous directory

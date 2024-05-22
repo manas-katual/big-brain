@@ -15,7 +15,7 @@ tags:
 	&rarr; User space
 	&rarr; Kernel space
 
-![[Operating System.png]]
+![[Operating_System.svg]]
 
 ---
 
@@ -54,7 +54,7 @@ tags:
 - Latest Stable Redhat Linux version is RHEL 9.x with Kernel version 5.x
 - Also in smartphones we have Android Operating System with Linux Kernel.
 
-![[Redhat Chain.png]]
+![[Redhat_Chain.svg]]
 
 &rarr; Redhat provides Subscription based product with **24/7 Vendor help/ Support** with Official Update.
 
@@ -63,7 +63,7 @@ tags:
 &rarr; 80% of Companies use Redhat as their core servers and if they want to reduce some costs they use free Linux based Operating System (not on there core servers)
 
 
-![[Server Chain.png]]
+![[Server_Chain.svg]]
 
 ---
 
@@ -71,7 +71,7 @@ tags:
 
 Kernel development and versions release is handled by **Open Source Community**
 
-![[Linux versions.png]]
+![[Linux_versions.svg]]
 
 ---
 ## Storage
@@ -82,12 +82,12 @@ Kernel development and versions release is handled by **Open Source Community**
 - This access points are called mount points
 - In windows operating system, mount points are in the form of drive letters
 
-![[Basic Storage Concept_1.png]]
+![[Basic_Storage_Concept_1.svg]]
 
 - Linux does not support drive letters
 - In Linux empty directories can be used as mount points
 
-![[Basic Storage Concept_2.png]]
+![[Basic_Storage_Concept_2.svg]]
 
 - When we install operating system on a hard drive, a default directory structure gets created that contains various system files and can also be used to store user data.
 - This default directory structure is called a file system.
@@ -99,7 +99,7 @@ Kernel development and versions release is handled by **Open Source Community**
 
 ==for better understanding see below diagram==
 
-![[Basic Storage Concept_3.png]]
+![[Basic_Storage_Concept_3.svg]]
 
 
 ---
@@ -119,7 +119,7 @@ There are two types of partition layout
 - **"/"** becomes the main system partition and while we have etc, usr, lib, proc, root, tmp and dev directories on itself
 - boot, home and var can be declared as mount points of separate partitions
 
-![[Basic Partition Layout_1.png]]
+![[Basic_Partition_Layout_1.svg]]
 
 ### Swap Partition
 
@@ -128,19 +128,19 @@ There are two types of partition layout
 - For example if there is 4gb RAM in the system and all the processes are full (RAM is full) then the system (RAM) borrows some space from the storage and it that storage acts as a RAM.
 - It is a temporary RAM
 
-![[Basic Partition Layout _2.png]]
+![[Basic_Partition_Layout_2.svg]]
 
 ---
 ## Virtualization
 
-![[Virtualization_1.png]]
+![[Virtualization_1.svg]]
 
 ### Hypervisor software :- Create Virtual Machine
 
   There is one physical computer inside that physical computer there can be multiple virtual machines every virtual machines can control different operating system.
 
 
-![[Virtualization_2.png]]
+![[Virtualization_2.svg]]
 
 ---
 ## Linux Access modes
@@ -188,7 +188,7 @@ Shell is the interactive program that listens to our commands, pass to kernel sp
 First user will give instruction to user space through shell then the shell will pass the instruction to kernel space execution of the instruction will happen in kernel space and after that kernel will give the output/error to user space
 
 **Types of shell :-**
-![[Basic Linux Terms 2.png]]
+![[Basic_Linux_Terms.svg]]
 
 ---
 
@@ -197,13 +197,13 @@ First user will give instruction to user space through shell then the shell will
 - Data Center is nothing but huge server rooms
 - We have to make local (physical) server strong
 
-![[Basic Linux Terms.excalidraw.png]]
+![[Basic_Linux_Terms_2.svg]]
 
 ## Remote Access
 
  Accessing servers over the network using applications like telnets and SSH
 
-![[Basic Linux Terms 1.1.excalidraw.png]]
+![[Basic_Linux_Terms_2.svg]]
 
 ## CLI over GUI mode
 

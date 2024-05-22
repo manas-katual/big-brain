@@ -1,3 +1,4 @@
+Uplink : [[Dashboard]]
 # Quartz
 
 An alternative to obsidian publish for free
