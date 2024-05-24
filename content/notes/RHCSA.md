@@ -5,7 +5,7 @@ tags:
 ---
  Uplink : [[Dashboard]]
 
-# RHCSA
+# Homepage
 
 Index
 

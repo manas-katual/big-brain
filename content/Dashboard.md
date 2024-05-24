@@ -3,18 +3,16 @@ title: Dashboard
 draft: false
 tags:
 ---
-# Homepage
-
-Index for all
+**It will be Index for all**
 
 ---
 
-## College
+### College
 - [[First year]]
 
 ---
 
-## Linux
+### Linux
 - [[RHCSA]]
 - [[RHCE]]
 - [[Arch linux]]
@@ -23,28 +21,36 @@ Index for all
 
 ---
 
-## Programming
+### Programming
 - [[Python]]
 - [[JavaScript]]
 
 ---
 
-## Networking
-- [[youtube]]
+### Networking
+- [[Basics]]
 - [[CCNA]]
 
 ---
 
-## Cyber Security
+### Cyber Security
 - [[Ethical Hacking]]
 
 ---
 
-## Skills
+### Skills
 - [[Git]]
 - [[Docker]]
 - [[VIM]]
 ---
 
-## Random
+### Random
 - [[Obsidian quartz]]
+
+---
+### Workout
+- [[Calisthenics]]
+
+---
+### Hobby
+- [[Guitar]]
