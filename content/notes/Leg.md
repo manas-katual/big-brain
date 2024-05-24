@@ -1,3 +1,8 @@
+---
+title: Leg
+draft: false
+tags:
+---
 <iframe width="560" height="315" src="https://www.youtube.com/embed/97SW57QlHwQ?si=TL7t8CztTFyL_6pR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
