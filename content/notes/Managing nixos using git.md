@@ -83,7 +83,8 @@ so to push the changes we have to use a remote like
 - Then add `git remote add nixos <cloned link>`
 - Then if we see by running `git remote` now it will be nixos
 
-#### Fixing Errors
+---
+#### Troubleshooting/Fixing errors
 
 - If we make a nix module for example `random.nix` and rebuild the system with `sudo nixos rebuild switch --flake .` or `home-manager switch --flake .` it will give some warning and errors 
 - This happens because nix know we have created a git for this folder so first we have to stage it and after that we have to rebuild the system it is not a bug it is a feature so we don't accidently rebuild the system without staging it 
