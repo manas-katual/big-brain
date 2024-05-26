@@ -1,5 +1,5 @@
 ---
-title: Git
+title: Boxing
 draft: false
 tags:
 ---
@@ -8,4 +8,5 @@ Uplink : [[Dashboard]]
 Index
 
 ---
-- [[Introduction to Git]]
+
+- [[Boxing WarmUp]]

@@ -4,9 +4,7 @@ draft: false
 tags:
 ---
  Uplink : [[RHCSA]]
-
-# Fundamentals
-
+ 
 ## Operating System
 
 - Operating system is the platform between the hardware and software of a computer.

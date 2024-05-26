@@ -4,7 +4,7 @@ draft: false
 tags:
 ---
 Uplink : [[Python]]
-# History of Python
+## History of Python
 
 Python is one of the general purpose, High level, object oriented and Interpreted Programming Language.
 

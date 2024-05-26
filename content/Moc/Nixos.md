@@ -3,6 +3,8 @@ title: Nixos
 draft: false
 tags:
 ---
+Uplink : [[Dashboard]]
+
 Index
 
 ---

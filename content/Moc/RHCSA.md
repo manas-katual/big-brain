@@ -5,8 +5,6 @@ tags:
 ---
  Uplink : [[Dashboard]]
 
-# Homepage
-
 Index
 
 ---

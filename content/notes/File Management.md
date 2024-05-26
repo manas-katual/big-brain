@@ -4,8 +4,6 @@ draft: false
 tags:
 ---
 Uplink : [[RHCSA]]
-
-# Linux File Management 
 ## Linux File System
 
   

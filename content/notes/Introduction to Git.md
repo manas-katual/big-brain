@@ -30,6 +30,6 @@ To understand Git we have to first Understand these two terms :
 - i.e. everyone maintains a local repository of their own which contains all the files & metadata present in their directory
 - ![[DVCS.svg]]
 - Even if the remote server or centralized server gets crashed it will not effect the local repo
-- Git is a example of DCVS
+- Git is a example of DVCS
 - It Doesn't need any internet connection
 - Git was introduced in 2005 and was made by **Linus Torvalds** who made [[021-1-3 What is Linux|Linux]]

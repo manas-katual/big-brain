@@ -50,6 +50,7 @@ tags:
 ---
 ### Workout
 - [[Calisthenics]]
+- [[Boxing]]
 
 ---
 ### Hobby

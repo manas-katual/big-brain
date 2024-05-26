@@ -1,4 +1,13 @@
-Our first Program
+---
+title: Variable & Data Types
+draft: false
+tags:
+---
+Uplink : [[Python]]
+
+## Start
+
+First Program
 ```py
 print("Hello World!")
 ```
