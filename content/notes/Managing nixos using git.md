@@ -3,6 +3,7 @@ title: Managing nixos using git
 draft: false
 tags:
 ---
+Uplink : [[Nixos]]
 ## Git installation and setup in home manager
 
 > [!NOTE] 
