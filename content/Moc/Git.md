@@ -9,3 +9,4 @@ Index
 
 ---
 - [[Introduction to Git]]
+- [[Difference between CVCS and DVCS]]

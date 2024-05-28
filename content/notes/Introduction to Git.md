@@ -6,8 +6,8 @@ tags:
 Uplink : [[Git]]
 
 To understand Git we have to first Understand these two terms :
-- [[01 Introduction to Git#^03e9db|Centralized Version Control System (CVCS)]]
-- [[01 Introduction to Git#^528c8b|Distributed Version Control System (DVCS)]]
+- [[Introduction to Git#Centralized Version Control System (CVCS)|Centralized Version Control System (CVCS)]]
+- [[Introduction to Git#Distributed Version Control System (DVCS)|Distributed Version Control System (DVCS)]]
 
 ---
 ## Centralized Version Control System (CVCS)
