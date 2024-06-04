@@ -10,3 +10,5 @@ Index
 ---
 - [[Introduction to docker]]
 - [[Advantages, Disadvantages and Architecture of docker ]]
+- [[Basic commands in docker]]
+- [[Docker file]]

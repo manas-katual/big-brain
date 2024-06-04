@@ -9,4 +9,5 @@ Index
 
 ---
 - [[Introduction to Git]]
-- [[Difference between CVCS and DVCS]]
+- [[Stages of Git & it's terminology]]
+- [[Git Commands]]
