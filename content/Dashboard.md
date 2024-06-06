@@ -41,6 +41,7 @@ tags:
 ### Skills
 - [[Git]]
 - [[Docker]]
+- [[Networking basics]]
 - [[VIM]]
 ---
 

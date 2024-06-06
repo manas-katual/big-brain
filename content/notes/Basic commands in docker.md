@@ -97,3 +97,9 @@ To delete containers
 ```bash
 docker rm luffy # name of the container
 ```
+
+To delete docker images
+```bash
+docker rmi <IMAGE ID>
+```
+you can find **IMAGE ID** by running `docker images` command

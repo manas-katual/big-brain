@@ -10,3 +10,4 @@ Index
 ---
 
 - [[Managing nixos using git]]
+- [[Install using github]]

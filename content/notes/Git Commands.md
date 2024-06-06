@@ -110,3 +110,73 @@ git log
 ```bash
 git push -u origin master
 ```
+
+## Git ignore
+
+To ignore some files while committing
+
+Create one hidden file `.gitignore
+```bash
+vim .gitignore
+```
+
+and enter file format which we want to ignore
+```bash
+# examples
+*.css
+*.java
+```
+
+next add 
+```bash
+git add .gitignore
+```
+
+next commit
+```bash
+git commit -m "added .gitignore"
+```
+
+check status
+```bash
+git status
+```
+
+create some text, java and css files
+```bash
+touch test.java test.css test.txt
+```
+
+and add them by running 
+```bash
+git add .
+```
+
+then check status
+```bash
+git status
+```
+it will only show `test.txt` and ignore the `test.java` and `test.css`
+
+commit changes
+```bash
+git commit -m "any messege"
+```
+
+To check the latest commit
+```bash
+git log -1 # it will show the latest commit
+git log -2 # it will show the latest 2 commits
+```
+
+To check all commits in a single line
+```bash
+git log --oneline
+```
+
+To check commit with a specific word 
+```bash
+git log --grep "ignore"
+```
+
+
