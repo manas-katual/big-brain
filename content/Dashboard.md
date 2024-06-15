@@ -44,11 +44,6 @@ tags:
 - [[Networking basics]]
 - [[VIM]]
 ---
-
-### Random
-- [[Obsidian quartz]]
-
----
 ### Workout
 - [[Calisthenics]]
 - [[Boxing]]
@@ -56,3 +51,7 @@ tags:
 ---
 ### Hobby
 - [[Guitar]]
+
+---
+### Random Stuff
+- [[Obsidian quartz]]

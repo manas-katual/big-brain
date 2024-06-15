@@ -30,7 +30,7 @@ Classes
 We only use class A, B and C. Class D is for multicasting. Class E is for Research
 
 if given any random IP address how to tell IP address is of which class
-we have to check 1st octet and tell
+we have to check the 1st octet and tell
 e.g. 137.20.20.10 is of class B because 137 the first octet lies in class B
 
 If anyone ask what is Network ID
@@ -39,12 +39,15 @@ If anyone ask what is Network ID
 | ------- | --- | --- | --- | --- |
 | Class B | N   | N   | H   | H   |
 | Class C | N   | N   | N   | H   |
+
 N - Network - 1 bit
 H - Host - 0 bit
 
 e.g. 115.10.0.15 tell its network ID
 steps
 - first check in which class it belongs
-- second check the network table above
+- second check the network table above the network section will remain same and rest will be zero
+- like for example if the ip address comes in class A then according to the table above it consists one network and 3 host so the network section will remain same and the host section will become zero
+- same goes for class B and class C
 - 115.10.0.15 will become 115.0.0.0
 - its like the network part remains same and the host part becomes 0 

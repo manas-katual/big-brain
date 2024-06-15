@@ -217,7 +217,7 @@ To search any file or folder on Linux commands are as follows
 1. `i` &rarr; enter into insert mode
 2. `esc` &rarr; enter into execution mode
 3. `esc:w` &rarr; write changes
-4. `esc:w` /apple.txt &rarr; write changes with file name
+4. `esc:w /apple.txt` &rarr; write changes with file name
 5. `esc:wq` &rarr; write changes and quit the file
 6. `esc:wq` /apple.txt &rarr; write changes and quit with the file name
 7. `esc:q` &rarr; quit the file
@@ -235,6 +235,14 @@ To search any file or folder on Linux commands are as follows
 19. `esc:set nu` &rarr; see line numbers
 20. `esc:set nonu` &rarr; hide line numbers
 21. `esc:/word` &rarr; jumb to the number containing word/phrase
+
+
+| Hotkeys            | Explaination                 |
+| ------------------ | ---------------------------- |
+| `i`                | enter into insert mode       |
+| `esc`              | enter into normal mode       |
+| `esc:w`            | write changes                |
+| `esc:w /apple.txt` | write changes with file name |
 
 ---
 
