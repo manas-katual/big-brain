@@ -148,7 +148,7 @@ modprobe dm-crypt
 modprobe dm-mod
 ```
 
-Setting up encryption on our luks lvm partiton
+Setting up encryption on our luks partiton
 
 ```bash
 cryptsetup luksFormat -v -s 512 -h sha512 /dev/sdx
@@ -173,7 +173,7 @@ After entering this command it will tell to give a password
 
 ### Mounting
 
-Mount the drives:
+First we need to decrypt and Mount the drives:
 
 ```bash
 cryptsetup open /dev/sdx luks_lvm
@@ -184,8 +184,389 @@ cryptsetup open /dev/sdx luks_lvm
 - `/dev/sdx`: This is the path to the LUKS-encrypted partition you want to open. Replace `sdx` with the actual partition identifier on your system.
 - `luks_lvm`: This is the name you are assigning to the unlocked device mapper device. You can choose a different name if preferred.
 
-For home partition
+After this we need to create a physical volume using lvm 
+```bash
+pvcreate /dev/mapper/luks_lvm
+```
+
+followed by a volume group named `arch`
+```bash
+vgcreate arch /dev/mapper/luks_lvm
+```
+
+then we can create a logical volume for our swap
+```bash
+lvcreate -n swap -L 4G -C y arch
+```
+here `-n` means name,
+`-L` means size, `[+|-]Size[kKmMgGtTpPeE]`
+`-C` means contiguous allocation and `y` for yes 
+
+now to create a root volume
+```bash
+lvcreate -n root -l +100%FREE arch
+```
+`-l` for dynamic allocation of storage `[+|-]LogicalExtentsNumber[%{VG|FREE|ORIGIN}]`
+
+Now we will decrypt and mount for home partition
 
 ```bash
 cryptsetup open /dev/sdx arch-home
+```
+
+Now setting up our file system
+
+first partition we will format for EFI 
+```bash
+mkfs.fat -F32 /dev/sda1
+```
+
+second partition we will format for boot
+```bash
+mkfs.ext4 /dev/sda2
+```
+
+For our root and home file system we will use btrfs
+
+for root
+```bash
+mkfs.btrfs -L root /dev/mapper/arch-root
+```
+
+for home
+```bash
+mkfs.btrfs -L home /dev/mapper/arch-home
+```
+
+last swap
+```bash
+mkswap /dev/mapper/arch-swap
+```
+
+Now mounting all partitions
+
+first enabling swap
+```bash
+swapon /dev/mapper/arch-swap
+swapon -a
+```
+`swap -a` to mark it as available
+
+mount root
+```bash
+mount /dev/mapper/arch-root /mnt
+```
+
+make directory
+```bash
+mkdir -p /mnt/{home,boot}
+```
+
+now we can mount `boot` and `home`
+```bash
+mount /dev/sda2 /mnt/boot
+mount /dev/mapper/arch-home /mnt/home
+```
+
+last to make a `efi` directory
+```bash
+mkdir /mnt/boot/efi
+```
+
+and mount `efi`
+```bash
+mount /dev/sda1 /mnt/boot/efi
+```
+check by using `lsblk`
+
+Now finally installing arch
+```bash
+pacstrap -K /mnt base linux linux-firmware
+```
+
+> [!TIP] Pro Tip
+> before running pacstrap for faster download enable parallel downloads
+
+```bash
+vim /etc/pacman.conf
+```
+edit this file by uncommenting `ParallelDownloads 30` you can set any number of parallel downloads
+
+then update by `pacman -Syy`
+
+After this we have to save our file system to our newly installed system
+this can be done by using `genfstab` command
+```bash
+genfstab -U -p /mnt > /mnt/etc/fstab
+```
+`-U` means generate fstab entries by using UUID's
+`-p` means generate output suitable for parsing
+
+now we can chroot into our new arch linux
+```bash
+arch-chroot /mnt /bin/bash
+```
+
+let's first download some important packages
+```bash
+pacman -S base-devel
+```
+this package provides some features for software development
+
+then install any text editor
+```bash
+pacman -S neovim nano emacs
+```
+
+now we need to edit a file to configure our linux to decrypt our volumes when it starts up
+```bash
+nvim /etc/mkinitcpio.conf
+```
+now scroll down to `hooks` section and add `encrypt lvm2` in between `block` and `filesystems` then go ahead and save and exit
+
+then we need to download and install `lvm2` package for the hook to be available
+```bash
+pacman -S lvm2
+```
+this will also regenerate our linux image
+
+next we will setup our bootloader 
+```bash
+pacman -S grub efibootmgr
+```
+
+after that we need to install grub onto our boot partiton
+```bash
+grub-install --efi-directory=/boot/efi
+```
+
+first run this command to get the UUID of the luks partition
+```bash
+blkid /dev/sda3
+```
+and copy the UUID
+
+open the grub config file
+```bash
+nvim /etc/default/grub
+```
+we will set some kernel parameters to our boot configuration
+edit this to line to look like something this 
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet root=/dev/mapper/arch-root cryptdevice=1f6446de-23ee-486f-a38b-c1138b323ccc:luks_lvm"
+```
+paste the UUID we copied earlier into the `cryptdevice=`
+
+after this we will setup our encrypted system so that we only have to use our password once
+first create a folder
+```bash
+mkdir /secure
+```
+
+then we will create a key
+for root
+```bash
+dd if=/dev/random of=/secure/root_keyfile.bin bs=512 count=8
+```
+
+for home
+```bash
+dd if=/dev/random of=/secure/home_keyfile.bin bs=512 count=8
+```
+
+next we will lock down the permission so that only root user can use this
+```bash
+chmod 000 /secure
+```
+
+its also a good idea to change the permission of initramfs as it will also contain the key file
+```bash
+chmod 600 /boot/initramfs-linux*
+```
+
+with our key file created we then need to add them to each of our partitions respectively
+```bash
+# for root
+cryptsetup luksAddKey /dev/sda3 /secure/root_keyfile.bin
+
+# for home
+cryptsetup luksAddKey /dev/sda4 /secure/home_keyfile.bin
+```
+
+with our key files created
+next to make sure the kernel can access them open
+```bash
+nvim /etc/mkinitcpio.conf
+```
+head down to the `FILES=()` and add this
+```bash
+FILES(/secure/root_keyfile.bin)
+```
+this will make sure the bootloader has access to this file when system starts up
+
+next we will add to the home partition
+first copy the UUID
+```bash
+blkid /dev/sda4
+```
+then open
+```bash
+nvim /etc/crypttab
+```
+
+in this go down and put everything like this
+```bash
+arch-home      UUID=<uuid>    /secure/home_keyfile.bin
+```
+the first column is for mount point second is for UUID and third points to our home's key file(password)
+
+after adding this regenerate our linux image 
+```bash
+mkinitcpio -p linux
+```
+
+then we need to initialize our grub configuration
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+then another directory to our EFI
+```bash
+grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+```
+this will enable grub for both bios and uefi system
+
+some final setup
+
+timezone
+```bash
+ln -sf /usr/share/zoneinfo/Asia/Kolkata /etc/localtime
+```
+you can always look for your time zone
+
+seting up NTP
+open
+```bash
+nvim /etc/systemd/timesyncd.conf
+```
+
+Add in the NTP servers
+```bash
+[Time]
+NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org 
+FallbackNTP=0.pool.ntp.org 1.pool.ntp.org
+```
+
+Enable timesyncd
+```bash
+systemctl enable systemd-timesyncd.service
+```
+
+Locale
+```bash
+nvim /etc/locale.gen
+```
+
+uncomment the UTF8 lang you want
+```bash
+en_IN UTF-8
+```
+
+```bash
+locale-gen
+```
+
+```bash
+nvim /etc/locale.conf
+```
+
+```bash
+LANG=en_IN.UTF-8
+```
+
+hostname
+```bash
+nvim /etc/hostname
+```
+give any name to your host
+
+set root password
+```bash
+passwd
+```
+
+next install zshell (optional)
+```bash
+pacman -S zsh
+```
+
+now we will create a user
+```bash
+useradd -m -G wheel -s /bin/zsh mk
+```
+
+creating password for user
+```bash
+passwd mk
+```
+
+setting default editor
+```bash
+export EDITOR=nvim
+```
+
+then open sudoers file to make your user powerfull
+```bash
+visudo
+```
+
+uncomment this line
+```bash
+%wheel ALL=(ALL:ALL) ALL
+```
+
+configuring network
+```bash
+pacman -S networkmanager
+systemctl enable NetworkManager
+```
+
+if you want you can install desktop environment
+```bash
+pacman -S gnome
+```
+
+then enable display manager
+```bash
+systemctl enable gdm
+```
+
+after that installing microcode
+```bash
+# for intel processors
+pacman -S intel-ucode
+
+#for amd processors
+pacman -S amd-ucode
+```
+
+after this we need to regenerate our grub config
+```bash
+grub-mkconfig -o /boot/grub/grub.cfg
+grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
+```
+
+now everything is done exit the chroot
+```bash
+exit
+```
+
+then unmount all the drives
+```bash
+umount -R /mnt
+```
+
+and reboot
+```bash
+reboot now
 ```
