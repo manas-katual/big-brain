@@ -6,16 +6,8 @@ tags:
 Uplink : [[Docker]]
 
 To install docker
-```bash
-# debian/ubuntu
-apt install docker
 
-# arch
-pacman -Sy docker
-
-# redhat/fedora
-dnf install docker
-```
+[Follow the official installation guide](https://docs.docker.com/engine/install/)
 
 To check if docker is installed
 ```bash

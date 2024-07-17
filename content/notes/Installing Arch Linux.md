@@ -117,7 +117,7 @@ lsblk
 
 we will be using `gdisk` to partition
 ```bash
-gdisk /dev/sdx
+gdisk /dev/vda
 ```
 
 Inside of gdisk, you can print the table using the `p` command.
@@ -129,8 +129,8 @@ the disk setup I have for my primary drive
 | --------- | ------------ | ----------- | ---- | ---------- |
 | 1         | default      | +512M       | ef00 | EFI        |
 | 2         | default      | +4G         | ef02 | Boot       |
-| 4         | default      | +50G        | 8309 | Linux luks |
-| 5         | default      | default     | 8302 | Linux Home |
+| 3         | default      | +50G        | 8309 | Linux luks |
+| 4         | default      | default     | 8302 | Linux Home |
 
 If you have a second drive for your home disk, then your table would be as 
 follows.
@@ -151,7 +151,7 @@ modprobe dm-mod
 Setting up encryption on our luks partiton
 
 ```bash
-cryptsetup luksFormat -v -s 512 -h sha512 /dev/sdx
+cryptsetup luksFormat -v -s 512 -h sha512 /dev/vda3
 ```
 
 Enter in your password and **Keep it safe**. There is no "forgot password" here.
@@ -159,7 +159,7 @@ Enter in your password and **Keep it safe**. There is no "forgot password" here.
 If you have a home partition, then initialize this as well
 
 ```bash
-cryptsetup luksFormat -v -s 512 -h sha512 /dev/sdx
+cryptsetup luksFormat -v -s 512 -h sha512 /dev/vda4
 ```
 
 - `cryptsetup`: This is the command used to manage disk encryption on Linux systems.
@@ -176,7 +176,7 @@ After entering this command it will tell to give a password
 First we need to decrypt and Mount the drives:
 
 ```bash
-cryptsetup open /dev/sdx luks_lvm
+cryptsetup open /dev/vda3 luks_lvm
 ```
 
 - `cryptsetup`: This is the command used to manage disk encryption on Linux systems.
@@ -211,19 +211,19 @@ lvcreate -n root -l +100%FREE arch
 Now we will decrypt and mount for home partition
 
 ```bash
-cryptsetup open /dev/sdx arch-home
+cryptsetup open /dev/vda4 arch-home
 ```
 
 Now setting up our file system
 
 first partition we will format for EFI 
 ```bash
-mkfs.fat -F32 /dev/sda1
+mkfs.fat -F32 /dev/vda1
 ```
 
 second partition we will format for boot
 ```bash
-mkfs.ext4 /dev/sda2
+mkfs.ext4 /dev/vda2
 ```
 
 For our root and home file system we will use btrfs
@@ -264,7 +264,7 @@ mkdir -p /mnt/{home,boot}
 
 now we can mount `boot` and `home`
 ```bash
-mount /dev/sda2 /mnt/boot
+mount /dev/vda2 /mnt/boot
 mount /dev/mapper/arch-home /mnt/home
 ```
 
@@ -275,16 +275,11 @@ mkdir /mnt/boot/efi
 
 and mount `efi`
 ```bash
-mount /dev/sda1 /mnt/boot/efi
+mount /dev/vda1 /mnt/boot/efi
 ```
 check by using `lsblk`
 
-Now finally installing arch
-```bash
-pacstrap -K /mnt base linux linux-firmware
-```
-
-> [!TIP] Pro Tip
+> [!TIP]
 > before running pacstrap for faster download enable parallel downloads
 
 ```bash
@@ -293,6 +288,11 @@ vim /etc/pacman.conf
 edit this file by uncommenting `ParallelDownloads 30` you can set any number of parallel downloads
 
 then update by `pacman -Syy`
+
+Now finally installing arch
+```bash
+pacstrap -K /mnt base linux linux-firmware
+```
 
 After this we have to save our file system to our newly installed system
 this can be done by using `genfstab` command
@@ -342,7 +342,7 @@ grub-install --efi-directory=/boot/efi
 
 first run this command to get the UUID of the luks partition
 ```bash
-blkid /dev/sda3
+blkid /dev/vda3
 ```
 and copy the UUID
 
@@ -387,10 +387,10 @@ chmod 600 /boot/initramfs-linux*
 with our key file created we then need to add them to each of our partitions respectively
 ```bash
 # for root
-cryptsetup luksAddKey /dev/sda3 /secure/root_keyfile.bin
+cryptsetup luksAddKey /dev/vda3 /secure/root_keyfile.bin
 
 # for home
-cryptsetup luksAddKey /dev/sda4 /secure/home_keyfile.bin
+cryptsetup luksAddKey /dev/vda4 /secure/home_keyfile.bin
 ```
 
 with our key files created
@@ -407,7 +407,7 @@ this will make sure the bootloader has access to this file when system starts up
 next we will add to the home partition
 first copy the UUID
 ```bash
-blkid /dev/sda4
+blkid /dev/vda4
 ```
 then open
 ```bash
@@ -534,11 +534,18 @@ systemctl enable NetworkManager
 if you want you can install desktop environment
 ```bash
 pacman -S gnome
+
+# window manager
+pacman -S i3-wm
 ```
 
 then enable display manager
 ```bash
+# for gnome
 systemctl enable gdm
+
+# for lightdm
+systemctl enable lightdm
 ```
 
 after that installing microcode

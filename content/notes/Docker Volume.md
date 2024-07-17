@@ -28,18 +28,18 @@ Uplink : [[Docker]]
 Create a `Dockerfile` and write
 ```bash
 FROM ubuntu
-VOLUME ["/sharefolder"]
+VOLUME ["/myvolume1"]
 ```
 
 Then create image from this `Dockerfile`
 ```bash
-docker build -t myimage .
+docker build -t chopper .
 ```
 `-t` is tag(name) which we gave `myimage`
 
 Now create a container from this image and run
 ```bash
-docker run -it --name container1 myimage /bin/bash
+docker run -it --name zimbie chopper /bin/bash
 ```
 
 Now by running `ls` you can see `sharefolder` we created.
@@ -47,16 +47,82 @@ Now by running `ls` you can see `sharefolder` we created.
 Now, share volume with another container
 Container1 <----> Container2
 ```bash
-docker run -it --name container2(new one) --privileged=true --volume-from container1(old one) ubuntu /bin/bash
+docker run -it --name nami(new one) --privileged=true --volume-from zimbie(old one) ubuntu /bin/bash
 ```
+`privileged=true` means new container will also have all rights to the volume
 
-Now after creating container 2 `sharefolder` will be visible whatever you do in one volume, can see from other volume.
+Now after creating container 2 that is 'nami' in our case `myvolume1` will be visible whatever you do in one volume, can see from other volume.
 
 e.g.
 ```bash
-touch /sharefolder/test.txt
-docker start container1
-docker attach container1
-ls /sharefolder/
+touch /myvolume1/test.txt
+docker start zimbie
+docker attach zimbie
+ls /myvolume1/
 ```
 now you can see `test.txt` file
+
+## Creating volume from CLI
+
+```bash
+docker run -it --name naruto -v /myvolume2 ubuntu /bin/bash
+```
+
+run the following commands
+```bash
+ls
+cd /myvolume2
+touch fifth
+ls
+exit
+```
+
+Now create one more container and share `myvolume2`
+```bash
+docker run -it --name kakashi --privileged=true --volumes-from naruto ubuntu /bin/bash
+```
+
+now you are inside container
+```bash
+ls
+```
+
+now create one file inside this volume and then check in `naruto` you can see that file
+```bash
+cd /myvolume2
+touch sixth
+exit
+```
+
+## Host to container sharing
+
+we can create a directory first which we want to share
+```bash
+mkdir hostshare
+```
+
+then run
+```bash
+docker run -it --name sasuke -v /root:/sharefolder --privileged=true ubuntu /bin/bash
+```
+before `:` that is directory of host machine after `:` that is containers directory
+
+now cd into `sharefolder` you can see all files of host machine
+```bash
+touch newtestfile
+exit
+```
+
+Now check in the hosts `/root` directory you can see the files
+
+## Some other commands
+
+```bash
+docker volume ls
+docker volume create <volumename>
+docker volume rm <volumename>
+docker volume prune # it removes all unused docker voumes
+docker volume inspect <volumename>
+docker container inspect <voumename>
+```
+

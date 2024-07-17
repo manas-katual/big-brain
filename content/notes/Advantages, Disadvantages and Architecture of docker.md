@@ -62,7 +62,7 @@ There are three ways to create images
 2. Create image from docker file 
 3. Create images from existing docker Containers
 ---
-## Container
+## Docker Container
 
 - Container holds the entire packages that needed to run the application
 - In other words we can say that, the image is template and container is a copy of that template 

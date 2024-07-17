@@ -41,6 +41,9 @@ tags:
 ### Skills
 - [[Git]]
 - [[Docker]]
+- [[Ansible]]
+- [[Jenkins]]
+- [[Kubernetes]]
 - [[Networking basics]]
 - [[VIM]]
 ---

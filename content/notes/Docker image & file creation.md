@@ -1,15 +1,17 @@
 ---
-title: Docker file
+title: Docker image & file creation
 draft: false
 tags:
 ---
 Uplink : [[Docker]]
 
+## Image method
+
 Now we have to create container from our own image
 Therefore, create one container first
 
 ```bash
-docker run -it --name luffy ubuntu /bin/bash
+docker run -it --name zoro ubuntu /bin/bash
 ```
 
 Now create one file inside the `tmp` directory 
@@ -20,7 +22,7 @@ touch myfile
 
 Now if we want to see the difference between the base image & changes on it then
 ```bash
-docker diff luffy
+docker diff zoro
 ```
 
 In Output it will show something like this
@@ -34,7 +36,7 @@ Here, `C` means *change* `A` means *Append/Add* and there is one more which is `
 
 Now, create image of this container
 ```bash
-docker commit luffy updateluffy
+docker commit zoro updatezoro
 ```
 Here, `luffy` is this containers name and `updateluffy` is the new name we gave now
 
@@ -45,7 +47,7 @@ docker images
 
 Now create container from this image
 ```bash
-docker run --name sanji -it updateluffy /bin/bash
+docker run --name sanji -it updatezoro /bin/bash
 ```
 
 Now inside the container you can see in `/tmp` directory there will be `myfile` or if you downloaded any software also it will be there
@@ -69,20 +71,45 @@ Now inside the container you can see in `/tmp` directory there will be `myfile` 
 - `ENV` - Environment Variables
 - `ARG` - Arguments
 
-### Example file
+### Steps to create a docker file
 
-first create a file
+1. First create a file
+
 ```bash
 vi Dockerfile
 ```
 it should be named only `Dockerfile` no other file name will be accepted
 
-then edit the file like this
+2.  Add instructions in docker file
+
 ```bash
 FROM debian
 WORKDIR /tmp
 RUN echo "Hello People !" > /tmp/testfile
-COPY randomfile /tmp
-ADD test.tar.gz
-ENV myname luffy
+COPY testfile1 /tmp
+ADD tarfile.tar.gz /tmp
+ENV myname onepiece
 ```
+
+create a file and create a tar file on the host machine which we defined in the `Dockerfile`
+```bash
+touch testfile1 tarfile
+tar -cvf tarfile.tar tarfile
+gzip tarfile.tar
+rm -rf tarfile
+```
+
+3. Build docker file to create image
+
+```bash
+docker build -t franky .
+```
+here `t` means 'tag' and `.` means 'current directory'
+
+4. Run image to create container
+
+```bash
+docker run -it --name ussop franky /bin/bash
+```
+
+now we can check if file was created or not
