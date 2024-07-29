@@ -22,6 +22,7 @@ tags:
 ---
 
 ### Programming
+- [[C]]
 - [[Python]]
 - [[JavaScript]]
 
