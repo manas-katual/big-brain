@@ -17,6 +17,8 @@ Uplink : [[C]]
 - We make function so that we can reuse a code multiple times.
 
 Let's make a simple function that print's `hello amit` when we call that
+- pass nothing
+- returns nothing
 
 ```c
 #include <stdio.h>
@@ -33,6 +35,7 @@ void main()
 ```
 
 Let's make a function that adds 2 numbers
+- 
 
 ```c
 #include <stdio.h>
@@ -53,6 +56,8 @@ void main()
 ```
 
 Other ways to create same function
+- pass something
+- returns nothing
 
 ```c
 #include <stdio.h>
@@ -74,6 +79,8 @@ void main()
 ```
 
 another way
+- pass something
+- returns something
 
 ```c
 #include <stdio.h>

@@ -10,3 +10,4 @@ Index
 ---
 - [[Functions in C]]
 - [[Switch case in C]]
+- [[Fobonacci Serries, Factorial, Power of number in C]]
