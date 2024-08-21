@@ -23,6 +23,7 @@ tags:
 
 ### Programming
 - [[C]]
+- [[C++]]
 - [[Python]]
 - [[JavaScript]]
 
@@ -47,6 +48,7 @@ tags:
 - [[Kubernetes]]
 - [[Networking basics]]
 - [[VIM]]
+- [[Custom-Rom]]
 ---
 ### Workout
 - [[Calisthenics]]
