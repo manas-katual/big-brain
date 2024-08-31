@@ -5,12 +5,12 @@ tags:
 ---
 Uplink : [[Custom-Rom]]
 
-- we will build custom rom of project blaze same follows for every other custom rom out there
-- go to the project blaze [github](https://github.com/ProjectBlaze/manifest) and follow thier instructions or do this 
+- we will build custom rom of lineageOS same follows for every other custom rom out there
+- go to the LineageOS [github](https://github.com/LineageOS) and look for android or manifest repository and follow thier instructions or do this 
 
 To initialize your local repository, use a command like this:
 ```bash
-repo init --depth=1 -u https://github.com/ProjectBlaze/manifest -b 14
+repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs
 ```
 
 Then to sync up:

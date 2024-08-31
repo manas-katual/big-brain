@@ -16,4 +16,28 @@ Uplink : [[Custom-Rom]]
 	- `vendor_brand_codename e.g. vendor_xiaomi_vince`
 - for kernel tree
 	- `kernel_brand_codename e.g. kernel_xiaomi_vince`
-- 
+
+
+> [!NOTE]
+> There are also common device tree and common vendor tree for devices also some need to clone hardware repo separately it will be mentioned in the dependencies file
+
+Now clone everything into specific directory and as per your device and manufacturer 
+
+example
+```bash
+# device tree
+git clone https://github.com/vince-labs/device_xiaomi_vince.git -b 14 device/xiaomi/vince
+
+# common device tree
+git clone https://github.com/vince-labs/device_xiaomi_msm8953-common.git -b 14 device/xiaomi/msm8953-common
+
+# vendor tree
+git clone https://github.com/vince-labs/vendor_xiaomi_msm8953-common.git -b 14 vendor/xiaomi/vince
+
+# common vendor tree
+git clone https://github.com/vince-labs/vendor_xiaomi_msm8953-common.git -b 14 vendor/xiaomi/msm8953-common
+
+# kernel tree
+git clone https://github.com/vince-labs/kernel_xiaomi_vince.git -b 14 kernel/xiaomi/msm8953
+
+```

@@ -1,0 +1,65 @@
+Link : [[CCNA]]
+
+# Lecture 7
+
+==Diagram==
+
+- HDFC ki lottery lag gayi 
+- HDFC ke do branch office hai ek Mumbai me aur ek Delhi me
+- HDFC ko agar apne do branch office ke bich me private communication karna hai to wo zammen khodkar ke khudka wire nahi daalega
+- Market me aneko service provider hai to service providers se wo apne do branch office ke liye Dedicated lease line lega
+- Toh kya service provider ye free me dega ? No.
+- Wo bohot premium charge lagayega
+- jabhi itna mehenga circuit liya jayega to kisiko bhi koi bhi service chalane denge ? No
+- ispar wahi services chalengi jo mere organization ke liye bohot mission critical hai
+- kya critical chalne wale ko link koi guarantee nahi chahiye hogi ? chahiye hogi
+- isliye mere aur mere service provider ke bichme SLA sign hota hai
+- SLA yani Service Level Agreement
+- Agreement ke andar aur bhi saare requirements likh denge 
+- ek baar ye agreement sign hogaya isme se ek bhi parameter agar service provider dene se chuk gaya to apneko penalty dega
+- quiki agreement ke andar penalty clause pehle se hi embedded hai
+- ab apki aisi stringent requirement ko deliver karne ke liye jab service provider apna network banayega to wo make sure karega uska network Robust ho highly available ho fully redundant ho aur kahi par bhi single point of failure hona nahi chahiye
+- yani customer ka traffic kidhar bhi roka to usko penalty dena padega
+- jab aisa Robust, Highly available, fully redundant aur No single point of failure wala network service provider banayega to kya wo free me dega ? No.
+- wo aur bhi bohot premium charge karega
+- is tarah do branch ke bich me private communication karne ke liye dedicated lease line ka istemal kiya jaata hai
+- jitna important private communication hai utna hi important public communication hai
+- agar internet par jaana hai public communication karna hai to internet service provider se Internet Lease Line lena padega
+- Internet yani best effort service chale to chaand tak nahi to shaam tak
+- iski koi guarantee ya warranty nahi hoti 
+- kaise milega ISP khud internet ko own nahi karta 
+- internet kisi ek ke baap ka nahi hai ye sabke baap ka hai
+- toh jo shared network iski koi guarantee ya warranty nahi de sakta
+- ek internet service provider aur service provider ke bichme difference kya hai 
+- service provider services ki guarantee deta hai internet service provider services ki guarantee nahi deta hai
+- quiki service provider guarantee dega isliye mere aur service provider ke bichme SLA sign hota hai 
+- mere aur mere ISP ke bich me kuch SLA sign nahi hota
+- service provider agar SLA violate kiya to mujhe penalty milega
+- ISP se liya hua wire aaj hi kat gaya kuch penalty milta nahi hai
+- last and most important point here
+- jo service provider hoga wo 100% internet service provider ho sakta hai lekin jo ISP wo service provider ho aisa jaruri nahi hai
+- is prakar se har bada organization apne branch ke andar private communication ke liye Dedicated lease Line aur public communication ke liye Internet Lease Line dono ko co-exist karta hai
+- ab ye to do branch ke bich ke connection ki baat hui 
+- ab ek branch ke andar kaise communication hoga
+- to jis device par hum baithkar hum apna saara communication karte hai aise device ko hum edge communication kehte hai 
+- aur jis device ko connect karke hum apne network ko access karte hai usko hum Access device kehte hai 
+- Switch is an Access Device
+- **Foundation rule :** Switch switches within the subnet router routes between the network 
+- ab communication private ho ya public ho communication karne ke liye ip address lagta hai
+- aur ip address kon control karta hai IANA ( Internet Assigned Numbers Authority )
+- Total IP Addresses : 
+	- 0.0.0.0 - 255.255.255.255
+- aur IANA ne pehle se hi decide kardiya hai ki for private communication private ip for public communication public ip
+- Private ip range : 
+	- 10.0.0.0 - 10.255.255.255
+	- 172.16.0.0 - 172.31.255.255
+	- 192.168.0.0 - 192.168.255.255
+- ab wahi logo ko private communication bhi karna hai aur public communication bhi karna hai to kya har bande ko 2 ip milega ? No.
+- sabko milta kewal private ip hai wahi lekar ke private communication kiya jayega
+- jab wo internet par jaane lagega to humara router jispar hum NAT enable karte hai 
+- NAT yani Network Address translation
+- ye wo feature hai jo private ip ko internet bhejne se pehle public ip me translate karega aur jab reply ayega to dubara wahi public ip ko private ip me translate karneka ka kaam karega
+- yehi nahi kya private communication har banda kar sakta hai dedicated lease line use karke ? No.
+- quki ye bohot mehenga padta hai to kya alternate feature hai ? yes
+- agar koi puche ki hum internet par private communication kar sakte hai ? toh pehla answer aana nahi chahiye No nahi na nako ille not allowd but agar phir bhi karna hai to hamare router par ek aur feature chalta hai jisko hum kehte hai VPN
+- it provides private communication over public infrastructure
