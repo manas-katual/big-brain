@@ -1,6 +1,11 @@
-Link : [[CCNA]]
+---
+title: LAN
+draft: false
+tags:
+---
+Uplink : [[CCNA]]
 
-# Lecture - 1
+---
 ## LAN (Local Area Network)
 
 LAN is a logical explanation of how big a network can be called as local
