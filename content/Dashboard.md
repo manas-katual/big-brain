@@ -42,6 +42,7 @@ tags:
 
 ### Skills
 - [[Git]]
+- [[SSH]]
 - [[Docker]]
 - [[Ansible]]
 - [[Jenkins]]
