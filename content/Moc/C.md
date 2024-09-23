@@ -8,6 +8,7 @@ Uplink : [[Dashboard]]
 Index
 
 ---
+- [[printf and scanf in C]]
 - [[Functions in C]]
 - [[If else in C]]
 - [[Switch case in C]]
