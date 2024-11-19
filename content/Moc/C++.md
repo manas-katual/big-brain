@@ -9,3 +9,4 @@ Index
 
 ---
 - [[Introduction to C++]]
+- [[Classes & Objects in C++]]
