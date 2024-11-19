@@ -78,6 +78,7 @@ void main()
 		        scanf("%d %d", &x, &y);
 		        z = x + y;
 		        printf("Addition is %d\n", z);
+		        break;
 		    }
 		    case 2:
 		    {

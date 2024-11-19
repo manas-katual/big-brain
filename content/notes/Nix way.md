@@ -11,14 +11,14 @@ curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix 
 ```
 then run `nix --help` to check if it is installed
 
-This command will make a bin directory set the PATH variable
+This command will make a bin directory and set the PATH variable
 ```bash
-mkdir ~/bin && PATH=~/bin:$PATH && cd ~/bin && curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo
+mkdir ~/bin && PATH=~/bin:$PATH && cd ~/bin && curl http://commondatastorage.googleapis.com/git-repo-downloads/repo > ~/bin/repo && chmod a+x ~/bin/repo && cd
 ```
 
 clone this in your home directory
 ```bash
-git clone https://gist.github.com/8d11dc53e4110c96f62c3b0ffc1aa18a.git ~/
+git clone https://gist.github.com/8d11dc53e4110c96f62c3b0ffc1aa18a.git ~/shell.nix
 ```
 
 now setup build environment by running this

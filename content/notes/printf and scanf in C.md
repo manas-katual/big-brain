@@ -88,3 +88,15 @@ main()
 	printf("Addition is %d", z);
 }
 ```
+
+Write a c program to find area of rectangle
+```c
+main()
+{
+	int l, y, result; 
+	printf("Enter lenght & Breadth");
+	scanf("%d %d", &l, &b);
+	result = l*b;
+	printf("Area of rectangle is %d", result);
+}
+```

@@ -7,7 +7,7 @@ Uplink : [[C]]
 
 Let's improve logical thinking
 
-Fibonacci is where you start a number from 0 and 1 and further continue add them `0 1 1 2 3 5 8` 
+Fibonacci is where you start a number from 0 and 1 and further continue add them `0 1 1 2 3 5 8 ...` 
 
 ```c
 #include <stdio.h>

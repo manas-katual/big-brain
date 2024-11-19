@@ -10,7 +10,7 @@ Uplink : [[C]]
 - There are 2 types of function 
 	- predefined function 
 	- user defined function. 
-- Predefined are already defined we just use them like `printf()` it is a predefined function and user defined function is something that we users defined or you can say create like for example `amit()`. 
+- Predefined functions are already defined we just use them like `printf()` it is a predefined function and user defined function is something that we users defined or you can say create like for example `amit()`. 
 - There are 2 types of User defined functions 
 	- call by value/pass by value 
 	- call by reference.
@@ -99,5 +99,15 @@ void main()
 	scanf("%d %d", &x, &y);
 	p = add(x, y); // actual argument // function calling
 	printf("Addition is %d", p);
+}
+```
+
+to print address of numbers 
+```c
+void main()
+{
+	int a;
+	char b;
+	printf("%d %d", &a, &b);
 }
 ```

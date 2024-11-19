@@ -24,6 +24,7 @@ tags:
 ### Programming
 - [[C]]
 - [[C++]]
+- [[Java]]
 - [[Python]]
 - [[JavaScript]]
 
