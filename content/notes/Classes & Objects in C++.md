@@ -40,13 +40,34 @@ class Nokia {
 	int speaker;
 	char a;
 	int radio;
+	void fun1()
+	{
+		cout<<"Yo !";
+	}
 };
 main()
 {
 	Nokia n1;
 	n1.speaker = 24;
 	n1.a = 'T';
+	cout<<"n1.speaker"<<endl;
+	n1.fun1()
 }
+```
+`endl` means start new line
+
+To make contents(variables/functions) inside `class` public we just have to add a keyword `public :` before it
+```c++
+class Nokia {
+	public: 
+	int speaker;
+	char a;
+	int radio;
+	void fun1()
+	{
+		cout<<"Yo !";
+	}
+};
 ```
 
 ![[Classes & Objects C++.svg]]

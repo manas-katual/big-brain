@@ -10,3 +10,4 @@ Index
 ---
 - [[Introduction to C++]]
 - [[Classes & Objects in C++]]
+- [[Accessing private variables in C++]]
