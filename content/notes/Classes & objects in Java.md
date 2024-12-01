@@ -24,7 +24,7 @@ class Object1{
 	}
 }
 ```
-This code will give error because humne jab function banaya wo static function nahi hai aur hum static context ke andar non-static function nahi call kar sakte quki main function static hai.
+This code will give error because humne jab function banaya wo static function nahi hai aur hum static context(main) ke andar non-static function nahi call kar sakte quki main function static hai.
 
 To hame function ko static bana na padega is tarah
 ```java
@@ -80,7 +80,7 @@ class Mahesh{
 	}
 }
 
-class object1{
+class Object1{
 	public static void main(String []args){
 		System.out.println("Bye");
 		Mahesh m1 = new Mahesh(); // this is syntax of java to create a object
@@ -89,3 +89,55 @@ class object1{
 	}
 }
 ```
+
+How to access private member variable ?
+--> hum kisi bhi private member ko access karne ke liye usi same class me ek function banake niche function ko call kar sakte hai and we can access by creating both static member or by simply creating a object.
+```java
+class A{
+	int x;
+	private static int y;
+	void fun1(){
+		y = 54;
+	}
+	void fun2(){
+		System.out.println(y);
+	}
+}
+
+class Demo{
+	public static void main(String [] args){
+		A a1 = new A();
+		a1.fun1();
+	}
+}
+```
+
+
+Tricky code
+```java
+class A{
+	int x;
+	private static int y;
+	void fun1(){
+		y = 54;
+	}
+	void fun2(){
+		System.out.println(y);
+	}
+	void fun3(){
+		y = 45;
+	}
+}
+
+class Demo{
+	public static void main(String [] args){
+		A a1 = new A();
+		A a2 = new A();
+		a1.fun1();
+		a2.fun3();
+		a1.fun2();
+	}
+}
+```
+yaha pe pehle `a1.fun1` ko call kiya jaha pe `y = 54` tha then `a2.fun3` ko call jo ki `y = 45` hogaya  agar hum `a1.fun2` ko call karenge to kya print hona chahiye 
+--> yaha pe `45` print hoga quki humne jab `a2.fun3` ko call kiya to `y` ke andar jo `54` tha wo `45` se replace hogaya quki hum jiske aage `static` laga dete hai to wo turant create ho jata hai
