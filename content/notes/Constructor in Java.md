@@ -34,3 +34,6 @@ class Demo{
 	}
 }
 ```
+
+> [!NOTE]
+> Jab object banta hai tab constructor chalta hai

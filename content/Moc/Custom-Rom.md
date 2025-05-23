@@ -7,3 +7,4 @@ Uplink : [[Dashboard]]
 
 - [[Normal way]]
 - [[Nix way]]
+- [[GSI-ROM]]
