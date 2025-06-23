@@ -8,3 +8,4 @@ Uplink : [[Dashboard]]
 Index
 
 - [[Installing Arch Linux]]
+- [[DWM]]
